@@ -1,11 +1,11 @@
-#ifndef SERIALPY_H
-#define SERIALPY_H
+#ifndef BLINKPIE_H
+#define BLINKPIE_H
 
 #include "Arduino.h"
 
-class SERIALPY {
+class BLINKPIE {
 public:
-	SERIALPY(uint32_t baudrate);
+	BLINKPIE(uint32_t baudrate);
 	void begin(HardwareSerial *serial);
 	void post(String data);
 	String get();

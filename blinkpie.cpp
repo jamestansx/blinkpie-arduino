@@ -1,24 +1,23 @@
 #include "Arduino.h"
-#include "serialpy.h"
+#include "blinkpie.h"
 
-#define MIN_DELAY 500
 
-SERIALPY::SERIALPY(uint32_t baudrate){
+BLINKPIE::BLINKPIE(uint32_t baudrate){
 	_baudrate = baudrate;
 	_Serial = NULL;
 }
 
-void SERIALPY::begin(HardwareSerial *serial){
+void BLINKPIE::begin(HardwareSerial *serial){
 	_Serial = serial;
 	_Serial->begin(_baudrate);
 }
 
-void SERIALPY::post(String data){
+void BLINKPIE::post(String data){
 	_Serial->print(String("POST " + data + "\r\n"));
 	while(_Serial->readString().equals(String("200\r\n")) != 1);
 }
 
-String SERIALPY::get(){
+String BLINKPIE::get(){
 	_Serial->print(String("GET\r\n"));
 	String data;
 	do{
