@@ -11,14 +11,16 @@ BLINKPIE::BLINKPIE(uint32_t baudrate, String UUID){
 void BLINKPIE::begin(HardwareSerial *serial){
 	_Serial = serial;
 	_Serial->begin(_baudrate);
-	String content = String("{\"profile\": \"" + _UUID + "\"}\r\n");
-	_Serial->print(content);
-	checkServerAvail();
+	do{
+		String content = String("{\"profile\": \"" + _UUID + "\"}\r\n");
+		_Serial->print(content);
+	}while(!checkServerAvail());
 }
 
 void BLINKPIE::post(String data){
-	_Serial->print(String(String("{\"data\": \"") + data + "\"}\r\n"));
-	checkServerAvail();
+	do{
+		_Serial->print(String(String("{\"data\": \"") + data + "\"}\r\n"));
+	}while(!checkServerAvail());
 }
 
 String BLINKPIE::get(){
@@ -33,8 +35,9 @@ String BLINKPIE::get(){
 }
 
 void BLINKPIE::notify(String data){
-	_Serial->print(String(String("{\"notification\":\"") + data + "\"}\r\n"));
-	checkServerAvail();
+	do{
+		_Serial->print(String(String("{\"notification\":\"") + data + "\"}\r\n"));
+	}while(!checkServerAvail());
 }
 
 bool BLINKPIE::checkServerAvail(){
