@@ -1,9 +1,11 @@
+#pragma once
 #ifndef BLINKPIE_H
 #define BLINKPIE_H
 
 #include "Arduino.h"
 
-class BLINKPIE {
+class BLINKPIE
+{
 public:
 	BLINKPIE(uint32_t baudrate, String UUID);
 	void begin(HardwareSerial *serial);
@@ -11,6 +13,7 @@ public:
 	void notify(String data);
 	String get();
 	bool checkServerAvail();
+
 private:
 	HardwareSerial *_Serial;
 	uint32_t _baudrate;
