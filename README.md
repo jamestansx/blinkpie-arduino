@@ -6,7 +6,8 @@ A simple library for Arduino UNO
 ```cpp
 #include "blinkpie.h"
 
-BLINKPIE blinkpie(9600);
+String uuid = "Paste Your UUID from The blinkpie_hdl.exe"
+BLINKPIE blinkpie(9600, uuid);
 
 void setup(){
 	blinkpie.begin(&Serial);
@@ -21,5 +22,6 @@ void loop(){
 	String data =blinkpie.get();
 	if(data.equals("1")) digitalWrite(8,HIGH);
 	if(data.equals("2")) digitalWrite(8,HIGH);
+	if(data.equals("n")) blinkpie.notify("Hello, World");
 }
 ```
