@@ -1,7 +1,17 @@
 # blinkpie-arduino
 A simple library for Arduino UNO
 
-# Example
+## Available Functions
+
+Class:
+- BLINKPIE(uint32_t baudrate, String UUID)
+
+Functions:
+- begin(HardwareSerial *serial)
+- post(String method, String param, String value)
+- get(String method, String param)
+
+## Example
 
 ```cpp
 #include "blinkpie.h"
